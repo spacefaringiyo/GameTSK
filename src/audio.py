@@ -14,7 +14,7 @@ class AudioEngine:
         self.miss_enabled = False
         self.hit_vol = 0.5
         self.miss_vol = 0.5
-        self.hit_freq = 130 
+        self.hit_freq = 150 
         self.miss_freq = 100
         
         # NEW: Tick Rate (0 = Continuous, >0 = Hz)
