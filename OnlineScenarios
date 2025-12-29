@@ -4,7 +4,7 @@
         "author": "YourName",
         "description": "A remix of the classic heartbeat pattern.",
         "data": {
-            "start_speed": 300, 
+            "start_speed": 400, 
             "end_speed": 300, 
             "tolerance": 50,
             "duration": 20,
