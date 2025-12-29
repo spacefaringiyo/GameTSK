@@ -9,7 +9,7 @@
             "tolerance": 50,
             "duration": 20,
             "timeline": [
-                {"time": 0,  "speed": 300},
+                {"time": 0,  "speed": 400},
                 {"time": 5,  "speed": 900},
                 {"time": 10, "speed": 300},
                 {"time": 15, "speed": 900},
