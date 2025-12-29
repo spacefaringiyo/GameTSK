@@ -2,7 +2,6 @@
     {
         "name": "Community: The Heartbeat test",
         "author": "YourName",
-        "description": "A remix of the classic heartbeat pattern.",
         "data": {
             "start_speed": 400, 
             "end_speed": 300, 
