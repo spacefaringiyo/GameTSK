@@ -1,6 +1,7 @@
 [
     {
         "name": "Standard Horizontal",
+        "author": "Gemini, iyo",
         "data": {
             "start_speed": 500,
             "end_speed": 500,
@@ -51,6 +52,7 @@
     },
     {
         "name": "Micro Control",
+        "author": "Gemini, iyo",
         "data": {
             "start_speed": 150,
             "end_speed": 150,
@@ -64,6 +66,7 @@
     },
     {
         "name": "Vertical Speed",
+        "author": "Gemini, iyo",
         "data": {
             "start_speed": 500,
             "end_speed": 500,
@@ -77,6 +80,7 @@
     },
     {
         "name": "Accel Ramp",
+        "author": "Gemini, iyo",
         "data": {
             "start_speed": 100,
             "end_speed": 1000,
