@@ -19,7 +19,7 @@
         "description": "A remix of the classic heartbeat pattern.",
         "data": {
             "zoom_scale": 2,
-            "smoothing": 20,
+            "smoothing": 75,
             "warmup_time": 1,
             "tolerance": 75,
             "duration": 20,
@@ -38,7 +38,7 @@
         "author": "Gemini, iyo",
         "data": {
             "zoom_scale": 2,
-            "smoothing": 20,
+            "smoothing": 75,
             "warmup_time": 1,
             "tolerance": 75,
             "duration": 15,
