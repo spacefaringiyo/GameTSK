@@ -4,30 +4,11 @@
          "data": {"start_speed": 500, "end_speed": 500, "tolerance": 75, "duration": 10, "smoothing": 75, "zoom_scale": 2, "warmup_time": 1, "directions": [false, false, true, true]}
      },
     {
-        "name": "Community: The Heartbeat test",
-        "author": "YourName",
-        "data": {
-            "start_speed": 400, 
-            "end_speed": 300, 
-            "tolerance": 50,
-            "duration": 20,
-            "timeline": [
-                {"time": 0,  "speed": 400},
-                {"time": 5,  "speed": 900},
-                {"time": 10, "speed": 300},
-                {"time": 15, "speed": 900},
-                {"time": 20, "speed": 300}
-            ]
-        }
-    },
-    {
-        "name": "Community: The Heartbeat",
-        "author": "YourName",
+        "name": "Heartbeat",
+        "author": "Gemini, iyo",
         "description": "A remix of the classic heartbeat pattern.",
         "data": {
-            "start_speed": 300, 
-            "end_speed": 300, 
-            "tolerance": 50,
+            "tolerance": 75,
             "duration": 20,
             "timeline": [
                 {"time": 0,  "speed": 300},
@@ -39,12 +20,10 @@
         }
     },
     {
-        "name": "Community: Stairway",
-        "author": "Gemini",
+        "name": "Stairway",
+        "author": "Gemini, iyo",
         "data": {
-            "start_speed": 100,
-            "end_speed": 1000,
-            "tolerance": 40,
+            "tolerance": 75,
             "duration": 15,
             "timeline": [
                 {"time": 0, "speed": 100},
