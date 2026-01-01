@@ -10,7 +10,14 @@
             "smoothing": 75,
             "zoom_scale": 2,
             "warmup_time": 1,
-            "directions": [false, false, true, true]
+            "directions": [
+                false,
+                false,
+                true,
+                true
+            ],
+            "name": "Standard Horizontal",
+            "author": "Gemini, iyo"
         }
     },
     {
@@ -23,14 +30,37 @@
             "warmup_time": 1,
             "tolerance": 75,
             "duration": 20,
-            "directions": [true, true, true, true],
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
             "timeline": [
-                {"time": 0, "speed": 300},
-                {"time": 5, "speed": 900},
-                {"time": 10, "speed": 300},
-                {"time": 15, "speed": 900},
-                {"time": 20, "speed": 300}
-            ]
+                {
+                    "time": 0,
+                    "speed": 300
+                },
+                {
+                    "time": 5,
+                    "speed": 900
+                },
+                {
+                    "time": 10,
+                    "speed": 300
+                },
+                {
+                    "time": 15,
+                    "speed": 900
+                },
+                {
+                    "time": 20,
+                    "speed": 300
+                }
+            ],
+            "name": "Heartbeat",
+            "author": "Gemini, iyo",
+            "description": "A remix of the classic heartbeat pattern."
         }
     },
     {
@@ -42,12 +72,28 @@
             "warmup_time": 1,
             "tolerance": 75,
             "duration": 15,
-            "directions": [true, true, true, true],
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
             "timeline": [
-                {"time": 0, "speed": 100},
-                {"time": 5, "speed": 500},
-                {"time": 10, "speed": 1000}
-            ]
+                {
+                    "time": 0,
+                    "speed": 100
+                },
+                {
+                    "time": 5,
+                    "speed": 500
+                },
+                {
+                    "time": 10,
+                    "speed": 1000
+                }
+            ],
+            "name": "Stairway",
+            "author": "Gemini, iyo"
         }
     },
     {
@@ -61,7 +107,14 @@
             "smoothing": 75,
             "zoom_scale": 3,
             "warmup_time": 1,
-            "directions": [true, true, true, true]
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "name": "Micro Control",
+            "author": "Gemini, iyo"
         }
     },
     {
@@ -75,7 +128,14 @@
             "smoothing": 75,
             "zoom_scale": 2,
             "warmup_time": 1,
-            "directions": [true, true, false, false]
+            "directions": [
+                true,
+                true,
+                false,
+                false
+            ],
+            "name": "Vertical Speed",
+            "author": "Gemini, iyo"
         }
     },
     {
@@ -89,7 +149,764 @@
             "smoothing": 75,
             "zoom_scale": 2,
             "warmup_time": 1,
-            "directions": [false, false, true, true]
+            "directions": [
+                false,
+                false,
+                true,
+                true
+            ],
+            "name": "Accel Ramp",
+            "author": "Gemini, iyo"
+        }
+    },
+    {
+        "name": "Narrowing",
+        "author": "iyo",
+        "description": "",
+        "data": {
+            "start_speed": 500,
+            "end_speed": 500,
+            "tolerance": 100,
+            "duration": 10,
+            "smoothing": 75,
+            "zoom_scale": 2,
+            "warmup_time": 1,
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "author": "iyo",
+            "description": "",
+            "name": "Narrowing",
+            "timeline": [
+                {
+                    "time": 0.0,
+                    "speed": 500,
+                    "tolerance": 100
+                },
+                {
+                    "time": 2.0,
+                    "speed": 500,
+                    "tolerance": 90
+                },
+                {
+                    "time": 4.0,
+                    "speed": 500,
+                    "tolerance": 80
+                },
+                {
+                    "time": 6.0,
+                    "speed": 500,
+                    "tolerance": 70
+                },
+                {
+                    "time": 8.0,
+                    "speed": 500,
+                    "tolerance": 60
+                },
+                {
+                    "time": 10.0,
+                    "speed": 500,
+                    "tolerance": 40
+                }
+            ]
+        }
+    },
+    {
+        "name": "Jolt",
+        "author": "iyo",
+        "description": " 0.7s static, 0.3s flick.",
+        "data": {
+            "start_speed": 10,
+            "end_speed": 500,
+            "tolerance": 50,
+            "duration": 10.2,
+            "smoothing": 40,
+            "zoom_scale": 2,
+            "warmup_time": 0,
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "author": "iyo",
+            "description": " 0.7s static, 0.3s flick.",
+            "name": "Jolt",
+            "timeline": [
+                {
+                    "time": 0.0,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.7,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.71,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.01,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.02,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.72,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.73,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 2.03,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 2.04,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.74,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.75,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.05,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.06,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.76,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.77,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 4.07,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 4.08,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.78,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.79,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.09,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.1,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.8,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.81,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 6.11,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 6.12,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.82,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.83,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.13,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.14,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.84,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.85,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.15,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.16,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.86,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.87,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.17,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.18,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.88,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.89,
+                    "speed": 500,
+                    "tolerance": 75
+                },
+                {
+                    "time": 10.19,
+                    "speed": 500,
+                    "tolerance": 75
+                }
+            ]
+        }
+    },
+    {
+        "name": "Jolt Alternate 400/600",
+        "author": "iyo & Gemini",
+        "description": "Static 0.7s, then alternates between 400 and 600 burst speeds.",
+        "data": {
+            "start_speed": 10,
+            "end_speed": 600,
+            "tolerance": 50,
+            "duration": 10.2,
+            "smoothing": 40,
+            "zoom_scale": 2,
+            "warmup_time": 0,
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "author": "iyo & Gemini",
+            "description": "Static 0.7s, then alternates between 400 and 600 burst speeds.",
+            "name": "Jolt Alternate 400/600",
+            "timeline": [
+                {
+                    "time": 0.0,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.7,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.71,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.01,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.02,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.72,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.73,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 2.03,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 2.04,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.74,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.75,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.05,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.06,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.76,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.77,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 4.07,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 4.08,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.78,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.79,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.09,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.1,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.8,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.81,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 6.11,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 6.12,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.82,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.83,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.13,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.14,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.84,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.85,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.15,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.16,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.86,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.87,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.17,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.18,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.88,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.89,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 10.19,
+                    "speed": 600,
+                    "tolerance": 75
+                }
+            ]
+        }
+    },
+    {
+        "name": "Jolt Chaotic",
+        "author": "iyo & Gemini",
+        "description": "Random wait times (0.2s - 1.1s) to break rhythm.",
+        "data": {
+            "start_speed": 10,
+            "end_speed": 600,
+            "tolerance": 50,
+            "duration": 10.5,
+            "smoothing": 40,
+            "zoom_scale": 2,
+            "warmup_time": 0,
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "author": "iyo & Gemini",
+            "description": "Random wait times (0.2s - 1.1s) to break rhythm.",
+            "name": "Jolt Chaotic",
+            "timeline": [
+                {
+                    "time": 0.0,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.8,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 0.81,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.11,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.12,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.52,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 1.53,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.83,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 1.84,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.94,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 2.95,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.25,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.26,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.56,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 3.57,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.87,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 3.88,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.78,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 4.79,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.09,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.1,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.4,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 5.41,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.71,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 5.72,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.72,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 6.73,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.03,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.04,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.34,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 7.35,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.65,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 7.66,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.56,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 8.57,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.87,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 8.88,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.28,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 9.29,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.59,
+                    "speed": 600,
+                    "tolerance": 75
+                },
+                {
+                    "time": 9.6,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 10.4,
+                    "speed": 10,
+                    "tolerance": 50
+                },
+                {
+                    "time": 10.41,
+                    "speed": 400,
+                    "tolerance": 75
+                },
+                {
+                    "time": 10.71,
+                    "speed": 400,
+                    "tolerance": 75
+                }
+            ]
         }
     }
 ]
