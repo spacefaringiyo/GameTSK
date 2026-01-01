@@ -168,8 +168,8 @@
             "zoom_scale": 2,
             "warmup_time": 1,
             "directions": [
-                false,
-                false,
+                true,
+                true,
                 true,
                 true
             ],
