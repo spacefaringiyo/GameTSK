@@ -8,7 +8,7 @@ PROTOCOL_PREFIX = "TSK1:"
 def generate_hash(config_data):
     """DNA Check: Hash ONLY physics. Metadata changes won't break PBs."""
     physics_keys = ["smoothing", "zoom_scale", "start_speed", "end_speed", 
-                    "tolerance", "duration", "warmup_time", "directions", "timeline"]
+                    "tolerance", "duration", "warmup_time", "directions", "timeline", "variant_id"]
     
     clean = {}
     for k in physics_keys:

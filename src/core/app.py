@@ -7,6 +7,11 @@ from src.engine.storage import Storage
 
 class TosokuApp:
     def __init__(self, state_dict, start_state):
+        try:
+            import ctypes
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:
+            pass # Not on Windows or older version, ignore
         pygame.init()
         pygame.mixer.pre_init(44100, -16, 1, 512)
 

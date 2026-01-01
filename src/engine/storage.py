@@ -2,12 +2,8 @@ import json
 import urllib.request
 import os
 import glob
-from src.core.config import BASE_DIR, STATS_FILE, SETTINGS_FILE
 from src.core.utils import generate_hash, generate_auto_name
 from src.core.config import STATS_FILE, SETTINGS_FILE, DATA_FILE, SCENARIOS_DIR
-
-DATA_FILE = os.path.join(BASE_DIR, "tosoku_data.json")
-SCENARIOS_DIR = os.path.join(BASE_DIR, "scenarios")
 
 class Storage:
     def __init__(self):
@@ -126,24 +122,25 @@ class Storage:
         return h in self.data['local_scenarios']
 
     def get_display_name(self, config_data):
-        # 1. Check for Wrapper (Online List items)
-        if isinstance(config_data, dict) and "name" in config_data and "data" in config_data:
+        # 1. Priority: Explicit Name (Wrapper OR Flat)
+        # If the data itself claims a name, we use it immediately.
+        # This fixes the inconsistency between Wrapper vs Flat formats.
+        if isinstance(config_data, dict) and config_data.get("name"):
             return config_data["name"]
             
-        # 2. Check local_scenarios (Database lookup)
+        # 2. Database Lookup (Fallback for nameless physics)
+        # If the data has no name, we check if we recognize the physics hash.
+        # (e.g. You pasted raw code that happens to match a local file)
         h = generate_hash(config_data)
         if h in self.data['local_scenarios']:
             val = self.data['local_scenarios'][h]
             if isinstance(val, dict):
-                return "★ " + val.get('name', 'Unknown')
+                return val.get('name', 'Unknown') # Removed "★ " prefix
             else:
-                return "★ " + str(val)
+                return str(val) # Legacy string format support
 
-        # 3. Check Internal Name (NEW - For Online/Pasted items)
-        if "name" in config_data:
-            return config_data["name"]
-
-        # 4. Fallback to Auto-Name
+        # 3. Last Resort: Auto-Generated Description
+        # e.g. "↔ 500→500 ±75"
         return generate_auto_name(config_data)
     
     def update_favorite_name(self, config_data, new_name):

@@ -277,7 +277,7 @@ class TabbedBrowser:
                     return None
             
             # Check for List clicking
-            list_rect = self.rect.inflate(-10, -40)
+            list_rect = pygame.Rect(self.rect.x, self.rect.y + 40, self.rect.width, self.rect.height - 40)
             if list_rect.collidepoint(event.pos):
                 ly = event.pos[1] - (self.rect.y + 40) + self.scroll_y
                 if ly >= 0:
