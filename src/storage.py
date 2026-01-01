@@ -1,66 +1,63 @@
 import json
+import urllib.request
 import os
-from .config import BASE_DIR, STATS_FILE, SETTINGS_FILE
-from .utils import generate_hash, generate_auto_name
-
-DATA_FILE = os.path.join(BASE_DIR, "tosoku_data.json")
+import glob
+from src.core.utils import generate_hash, generate_auto_name
+from src.core.config import STATS_FILE, SETTINGS_FILE, DATA_FILE, SCENARIOS_DIR
 
 class Storage:
     def __init__(self):
         self.data = self.load_data()
 
+
     def load_data(self):
-        # 1. Define Standard Structure
+        CURRENT_VERSION = 2
         default_structure = {
+            "version": CURRENT_VERSION,
             "recents": [],   
             "imported": [],  
-            "favorites": {}  
+            "local_scenarios": {}, # Renamed from favorites
+            "stars": {             # NEW: Stores hashes of pinned items per tab
+                "RECENT": [],
+                "LOCAL": [],
+                "ONLINE": [],
+                "IMPORT": []
+            }
         }
         
-        # 2. Check if file exists
         if not os.path.exists(DATA_FILE):
             # --- FACTORY PRESETS GENERATION ---
             # If no DB exists, we create one with these starters in Favorites
             
             presets = [
-                # 1. Standard Horizontal Tracking
-                {
-                    "name": "Standard Horizontal",
-                    "data": {"start_speed": 500, "end_speed": 500, "tolerance": 75, "duration": 10, "smoothing": 75, "zoom_scale": 2, "warmup_time": 1, "directions": [False, False, True, True]}
-                },
-                # 2. Slow Micro-Control
-                {
-                    "name": "Micro Control",
-                    "data": {"start_speed": 150, "end_speed": 150, "tolerance": 20, "duration": 10, "smoothing": 75, "zoom_scale": 2, "warmup_time": 1, "directions": [True, True, True, True]}
-                },
-                # 3. Vertical Strafe
-                {
-                    "name": "Vertical Speed",
-                    "data": {"start_speed": 500, "end_speed": 500, "tolerance": 100, "duration": 10, "smoothing": 75, "zoom_scale": 2, "warmup_time": 1, "directions": [True, True, False, False]}
-                },
-                # 4. Acceleration Test (Ramp)
-                {
-                    "name": "Accel Ramp Test",
-                    "data": {"start_speed": 100, "end_speed": 1000, "tolerance": 100, "duration": 10, "smoothing": 75, "zoom_scale": 2, "warmup_time": 1, "directions": [False, False, True, True]}
-                }
+                
             ]
-            
-            # Inject into structure
+
             for p in presets:
                 h = generate_hash(p['data'])
-                default_structure['favorites'][h] = p
-                
+                # FIX: Use 'local_scenarios' here instead of 'favorites'
+                default_structure['local_scenarios'][h] = p
             return default_structure
             
-        # 3. Normal Load
         try:
             with open(DATA_FILE, 'r') as f:
                 d = json.load(f)
-                for k in default_structure:
-                    if k not in d: d[k] = default_structure[k]
+                # --- FUTURE PROOFING: MIGRATION LOGIC ---
+                file_v = d.get("version", 0)
+                
+                if file_v < CURRENT_VERSION:
+                    print(f"Upgrading data from v{file_v} to v{CURRENT_VERSION}")
+                    # Here you can add specific logic for future updates
+                    # For now, we just ensure version key is updated
+                    d["version"] = CURRENT_VERSION
+                
+                # Ensure missing keys (from any version) are filled from defaults
+                for k, v in default_structure.items():
+                    if k not in d: d[k] = v
                 return d
         except:
             return default_structure
+
 
     def save_data(self):
         with open(DATA_FILE, 'w') as f:
@@ -91,18 +88,18 @@ class Storage:
     def add_imported(self, config_data):
         self._push_to_list("imported", config_data)
 
-    # --- Favorites Management ---
+    # --- local_scenarios Management ---
 
     def toggle_favorite(self, config_data, custom_name=None):
         h = generate_hash(config_data)
         
         # Check if exists (Migration support: checks dict keys)
-        if h in self.data['favorites']:
+        if h in self.data['local_scenarios']:
             # REMOVE
-            del self.data['favorites'][h]
+            del self.data['local_scenarios'][h]
         else:
             # ADD - Now stores the FULL DATA
-            self.data['favorites'][h] = {
+            self.data['local_scenarios'][h] = {
                 "name": custom_name if custom_name else "Favorite",
                 "data": config_data
             }
@@ -110,29 +107,39 @@ class Storage:
 
     def update_favorite_name(self, config_data, new_name):
         h = generate_hash(config_data)
-        if h in self.data['favorites']:
+        if h in self.data['local_scenarios']:
             # Update just the name field
-            entry = self.data['favorites'][h]
+            entry = self.data['local_scenarios'][h]
             # Handle legacy string format if present, convert to new format
             if isinstance(entry, str):
-                self.data['favorites'][h] = {"name": new_name, "data": config_data}
+                self.data['local_scenarios'][h] = {"name": new_name, "data": config_data}
             else:
                 entry['name'] = new_name
             self.save_data()
 
     def is_favorite(self, config_data):
         h = generate_hash(config_data)
-        return h in self.data['favorites']
+        return h in self.data['local_scenarios']
 
     def get_display_name(self, config_data):
+        # 1. Check for Wrapper (Online List items)
+        if isinstance(config_data, dict) and "name" in config_data and "data" in config_data:
+            return config_data["name"]
+            
+        # 2. Check local_scenarios (Database lookup)
         h = generate_hash(config_data)
-        if h in self.data['favorites']:
-            val = self.data['favorites'][h]
-            # Robust check for new dict format vs old string format
+        if h in self.data['local_scenarios']:
+            val = self.data['local_scenarios'][h]
             if isinstance(val, dict):
                 return "★ " + val.get('name', 'Unknown')
             else:
                 return "★ " + str(val)
+
+        # 3. Check Internal Name (NEW - For Online/Pasted items)
+        if "name" in config_data:
+            return config_data["name"]
+
+        # 4. Fallback to Auto-Name
         return generate_auto_name(config_data)
     
     def update_favorite_name(self, config_data, new_name):
@@ -142,10 +149,10 @@ class Storage:
         # 1. Ensure the data structure is rebuilt correctly ({name, data})
         # 2. Move it to the END of the dictionary (which appears at TOP in Browser)
         
-        if h in self.data['favorites']:
-            del self.data['favorites'][h]
+        if h in self.data['local_scenarios']:
+            del self.data['local_scenarios'][h]
             
-        self.data['favorites'][h] = {
+        self.data['local_scenarios'][h] = {
             "name": new_name,
             "data": config_data
         }
@@ -156,7 +163,7 @@ class Storage:
     def load_global_settings(self):
         if not os.path.exists(SETTINGS_FILE):
             return {"hit_enabled": True, "miss_enabled": False, "hit_vol": 0.3, "miss_vol": 0.3,
-                    "hit_freq": 150, "miss_freq": 100, "tick_rate": 20, "last_active_tab": 1 }
+                    "hit_freq": 150, "miss_freq": 100, "tick_rate": 20, "last_active_tab": 0 }
         try:
             with open(SETTINGS_FILE, 'r') as f: return json.load(f)
         except: return {}
@@ -183,3 +190,84 @@ class Storage:
         if not scores:
             return 0.0
         return max(scores)
+
+    def get_custom_scenarios(self):
+    #"""Scans the scenarios/ folder for .json files"""
+        if not os.path.exists(SCENARIOS_DIR):
+            os.makedirs(SCENARIOS_DIR)
+        
+        results = []
+        # Find all .json files
+        files = glob.glob(os.path.join(SCENARIOS_DIR, "*.json"))
+        
+        for fpath in files:
+            try:
+                with open(fpath, 'r') as f:
+                    content = json.load(f)
+                    
+                # Logic: Is this a full wrapper or just the data?
+                # Case A: User pasted { "name": "X", "data": {...} }
+                if "data" in content and "name" in content:
+                    results.append(content["data"])
+                # Case B: User pasted raw config { "start_speed": ... }
+                else:
+                    # We treat the whole file as the data
+                    results.append(content)
+                    
+            except Exception as e:
+                print(f"Failed to load {fpath}: {e}")
+                
+        return results
+    
+    # Changed to accept target_url
+    def get_online_scenarios(self, target_url):
+        if not target_url:
+            return [{"name": "⚠ No URL Configured", "data": {}}]
+
+        try:
+            with urllib.request.urlopen(target_url, timeout=3) as url:
+                data = json.loads(url.read().decode())
+                return data
+                
+        except Exception as e:
+            print(f"Online Fetch Error: {e}")
+            return [
+                {"name": "⚠ Connection Failed", "data": {}},
+                {"name": "Retry later...", "data": {}}
+            ]
+        
+    def toggle_star(self, tab_name, config_data):
+        """Pins/Unpins an item in a specific tab"""
+        h = generate_hash(config_data)
+        tab_stars = self.data["stars"].get(tab_name, [])
+        
+        if h in tab_stars:
+            tab_stars.remove(h)
+        else:
+            tab_stars.append(h)
+        
+        self.data["stars"][tab_name] = tab_stars
+        self.save_data()
+
+    def is_starred(self, tab_name, config_data):
+        h = generate_hash(config_data)
+        return h in self.data["stars"].get(tab_name, [])
+    
+    def save_to_local(self, config_data, custom_name=None):
+        """Formerly toggle_favorite - saves a config to the local library"""
+        h = generate_hash(config_data)
+        self.data['local_scenarios'][h] = {
+            "name": custom_name if custom_name else "New Scenario",
+            "data": config_data.copy()
+        }
+        self.save_data()
+
+    def is_local(self, config_data):
+        h = generate_hash(config_data)
+        return h in self.data['local_scenarios']
+
+    def delete_local(self, config_data):
+        h = generate_hash(config_data)
+        if h in self.data['local_scenarios']:
+            del self.data['local_scenarios'][h]
+            self.save_data()
