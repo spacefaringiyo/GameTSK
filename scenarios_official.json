@@ -21,24 +21,6 @@
         }
     },
     {
-    "start_speed": 500,
-    "end_speed": 500,
-    "tolerance": 40,
-    "duration": 10.0,
-    "smoothing": 75,
-    "zoom_scale": 2,
-    "warmup_time": 1,
-    "directions": [
-        false,
-        false,
-        true,
-        true
-    ],
-    "name": "Standard Horizontal Hard",
-    "author": "Gemini, iyo",
-    "description": ""
-},
-    {
         "name": "Heartbeat",
         "author": "Gemini, iyo",
         "description": "A remix of the classic heartbeat pattern.",
@@ -168,13 +150,38 @@
             "zoom_scale": 2,
             "warmup_time": 1,
             "directions": [
-                true,
-                true,
+                false,
+                false,
                 true,
                 true
             ],
             "name": "Accel Ramp",
             "author": "Gemini, iyo"
+        }
+    },
+    {
+        "name": "Accel Ramp Hard",
+        "author": "Gemini, iyo",
+        "description": "Tolerance set to 50 (Normal = 75)",
+        "data": {
+            "start_speed": 100,
+            "end_speed": 1000,
+            "tolerance": 50,
+            "duration": 10,
+            "smoothing": 75,
+            "zoom_scale": 2,
+            "warmup_time": 1,
+            "directions": [
+                true,
+                true,
+                true,
+                true
+            ],
+            "name": "Accel Ramp Hard",
+            "author": "Gemini, iyo",
+            "description": "Tolerance set to 50 (Normal = 75)",
+            "variant_id": "9d486ef6",
+            "origin_tag": "LOCAL"
         }
     },
     {
